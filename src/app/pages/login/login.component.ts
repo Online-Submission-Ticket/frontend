@@ -1,6 +1,8 @@
 import { Component } from '@angular/core';
 import { Router } from '@angular/router';
-
+import { HttpClient } from '@angular/common/http';
+import { catchError, tap } from 'rxjs/operators';
+import { throwError } from 'rxjs';
 @Component({
   selector: 'app-login',
   templateUrl: './login.component.html',
@@ -9,66 +11,73 @@ import { Router } from '@angular/router';
 export class LoginComponent {
 
 
-  isSignDivVisiable: boolean  = true;
+   isSignDivVisiable: boolean  = true;
+ //
+ //  signUpObj: SignUpModel  = new SignUpModel();
+ //  loginObj: LoginModel  = new LoginModel();
+ //
+ // // constructor(private router: Router){}
 
-  signUpObj: SignUpModel  = new SignUpModel();
-  loginObj: LoginModel  = new LoginModel();
-
-  constructor(private router: Router){}
-
-
-  onRegister() {
-    debugger;
-    const localUser = localStorage.getItem('angular17users');
-    if(localUser != null) {
-      const users =  JSON.parse(localUser);
-      users.push(this.signUpObj);
-      localStorage.setItem('angular17users', JSON.stringify(users))
-    } else {
-      const users = [];
-      users.push(this.signUpObj);
-      localStorage.setItem('angular17users', JSON.stringify(users))
-    }
-    alert('Registration Success')
-  }
+ name : string = ""
+    email : string = ""
+  password : string = ""
+   constructor(private http: HttpClient, private router: Router) {}
 
   onLogin() {
-    debugger;
-    const localUsers =  localStorage.getItem('angular17users');
-    if(localUsers != null) {
-      const users =  JSON.parse(localUsers);
+    let body = {
+      "name": this.name,
+      "email": this.email,
+      "password": this.password
+    };
 
-      const isUserPresent =  users.find( (user:SignUpModel)=> user.email == this.loginObj.email && user.password == this.loginObj.password);
-      if(isUserPresent != undefined) {
-        alert("User Found...");
-        localStorage.setItem('loggedUser', JSON.stringify(isUserPresent));
-        this.router.navigateByUrl('/dashboard');
-      } else {
-        alert("No User Found")
-      }
-    }
+    this.http.post("http://localhost:8080/api/auth/login", body, {responseType: 'text'})
+      .pipe(
+        tap((resultData: any) => {
+          const response = JSON.parse(resultData);
+          console.log(response);
+          if (response.success) {
+            alert("Login successful!");
+            this.router.navigateByUrl('/dashboard');
+            this.name = '';
+            this.email = '';
+            this.password = '';
+          } else {
+            throw new Error("Login failed. Please check your credentials and try again.");
+          }
+        }),
+        catchError((error) => {
+          if (error.status === 401) {
+            alert("Unauthorized access. Please check your credentials.");
+          } else {
+            alert("An error occurred while logging in. Please try again later.");
+          }
+          return throwError(error);
+        })
+      )
+      .subscribe();
   }
 
 }
 
-export class SignUpModel  {
-  name: string;
-  email: string;
-  password: string;
 
-  constructor() {
-    this.email = "";
-    this.name = "";
-    this.password= ""
-  }
-}
+// export class SignUpModel  {
+//   name: string;
+//   email: string;
+//   password: string;
+//
+//   constructor() {
+//     this.email = "";
+//     this.name = "";
+//     this.password= ""
+//   }
+// }
 
-export class LoginModel  { 
-  email: string;
-  password: string;
-
-  constructor() {
-    this.email = ""; 
-    this.password= ""
-  }
-}
+// export class LoginModel  {
+//   email: string;
+//   password: string;
+//
+//   constructor() {
+//     this.email = "";
+//     this.password= ""
+//   }
+// }

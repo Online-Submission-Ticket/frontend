@@ -1,9 +1,9 @@
 
-<div class="parent"> 
+<div class="parent">
     <div class="container" [ngClass]="isSignDivVisiable ? 'active' :'' " id="container">
         <div class="form-container sign-up" >
             <form>
-                <h1>Create Account</h1>
+                <h1>New user</h1>
                 <div class="social-icons">
                     <a href="#" class="icon"><i class="fa-brands fa-google-plus-g"></i></a>
                     <a href="#" class="icon"><i class="fa-brands fa-facebook-f"></i></a>
@@ -11,10 +11,10 @@
                     <a href="#" class="icon"><i class="fa-brands fa-linkedin-in"></i></a>
                 </div>
                 <span>or use your email for registeration</span>
-                <input type="text" name="name" [(ngModel)]="signUpObj.name" placeholder="Name">
-                <input type="email" name="email" [(ngModel)]="signUpObj.email" placeholder="Email">
-                <input type="password" name="password"  [(ngModel)]="signUpObj.password" placeholder="Password">
-                <button (click)="onRegister()">Sign Up</button>
+<!--                <input type="text" name="name" [(ngModel)]="signUpObj.name" placeholder="Name">-->
+<!--                <input type="email" name="email" [(ngModel)]="signUpObj.email" placeholder="Email">-->
+<!--                <input type="password" name="password"  [(ngModel)]="signUpObj.password" placeholder="Password">-->
+<!--                <button (click)="onRegister()">Sign Up</button>-->
             </form>
         </div>
         <div class="form-container sign-in" >
@@ -27,9 +27,9 @@
                     <a href="#" class="icon"><i class="fa-brands fa-linkedin-in"></i></a>
                 </div>
                 <span>or use your email password</span>
-                <input type="email" name="email" [(ngModel)]="loginObj.email" placeholder="Email">
-                <input type="password" name="password"   [(ngModel)]="loginObj.password" placeholder="Password">
-                <a href="#">→ Forget Your Password? ←</a>
+                <input type="email" name="email" [(ngModel)]="email" placeholder="Email">
+                <input type="password" name="password"   [(ngModel)]="password" placeholder="Password">
+                <a href="#">→ Forgot Your Password? ←</a>
                 <button (click)="onLogin()">Sign In</button>
             </form>
         </div>
