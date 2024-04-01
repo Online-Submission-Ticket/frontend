@@ -1,0 +1,36 @@
+/* Card styles */
+.card {
+  width: 300px;
+  background-color: #fff; /* White background color */
+  border-radius: 10px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  padding: 20px;
+  margin: 20px;
+  display: inline-block;
+}
+
+/* Card title styles */
+.card h3 {
+  margin-top: 0;
+  font-size: 20px;
+  color: #333; /* Dark gray title color */
+}
+
+/* Card content styles */
+.card p {
+  font-size: 16px;
+  color: #666; /* Gray content color */
+}
+
+/* Card image styles */
+.card img {
+  width: 100%;
+  border-radius: 10px 10px 0 0; /* Rounded corners for the top */
+}
+
+/* Card colors */
+.card{
+  background-color: #191970; /* Green background color */
+}
+
+

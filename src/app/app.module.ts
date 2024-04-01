@@ -8,12 +8,19 @@ import { LayoutComponent } from './pages/layout/layout.component';
 import { DashboardComponent } from './pages/dashboard/dashboard.component';
 import { FormsModule } from '@angular/forms';
 import {  HttpClientModule } from '@angular/common/http';
+import { SubTicketComponent } from './pages/sub-ticket/sub-ticket.component';
+import { BatchDetailsComponent } from './pages/batch-details/batch-details.component';
+import { CardServiceComponent } from './service/card-service/card-service.component';
 @NgModule({
   declarations: [
     AppComponent,
     LoginComponent,
     LayoutComponent,
-    DashboardComponent
+    DashboardComponent,
+    SubTicketComponent,
+    BatchDetailsComponent,
+
+    CardServiceComponent
   ],
   imports: [
     BrowserModule,
