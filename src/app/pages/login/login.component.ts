@@ -37,7 +37,25 @@ export class LoginComponent {
           console.log(response);
           if (response.success) {
             alert("Login successful!");
-            this.router.navigateByUrl('/dashboard');
+            this.router.navigateByUrl('/sub-ticket');
+
+            // const domain = this.email.substring(this.email.lastIndexOf('@') + 1);
+            // if (domain === 'ms.pict.edu')
+            // {
+            //   this.router.navigateByUrl('/dashboard');
+            //
+            // }
+            // else if (domain === 'gmail.com')
+            // {
+            //   this.router.navigateByUrl('/sub-ticket');
+            //
+            // }
+            // else
+            // {
+            //   console.log('Email domain is not supported');
+            // }
+
+            //this.router.navigateByUrl('/dashboard');
             this.name = '';
             this.email = '';
             this.password = '';
@@ -60,24 +78,3 @@ export class LoginComponent {
 }
 
 
-// export class SignUpModel  {
-//   name: string;
-//   email: string;
-//   password: string;
-//
-//   constructor() {
-//     this.email = "";
-//     this.name = "";
-//     this.password= ""
-//   }
-// }
-
-// export class LoginModel  {
-//   email: string;
-//   password: string;
-//
-//   constructor() {
-//     this.email = "";
-//     this.password= ""
-//   }
-// }
