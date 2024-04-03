@@ -3,62 +3,49 @@ import { Router } from '@angular/router';
 import { HttpClient } from '@angular/common/http';
 import { catchError, tap } from 'rxjs/operators';
 import { throwError } from 'rxjs';
+
 @Component({
   selector: 'app-login',
   templateUrl: './login.component.html',
-  styleUrl: './login.component.css'
+  styleUrls: ['./login.component.css']
 })
 export class LoginComponent {
+  isSignDivVisiable: boolean  = true;
+  emailID: string = "";
+  password: string = "";
 
-
-   isSignDivVisiable: boolean  = true;
- //
- //  signUpObj: SignUpModel  = new SignUpModel();
- //  loginObj: LoginModel  = new LoginModel();
- //
- // // constructor(private router: Router){}
-
- name : string = ""
-    email : string = ""
-  password : string = ""
-   constructor(private http: HttpClient, private router: Router) {}
+  constructor(private http: HttpClient, private router: Router) {}
 
   onLogin() {
     let body = {
-      "name": this.name,
-      "email": this.email,
+      "emailID": this.emailID,
       "password": this.password
     };
-
-    this.http.post("http://localhost:8080/api/auth/login", body, {responseType: 'text'})
+    const domain = this.emailID.substring(this.emailID.lastIndexOf('@') + 1);
+    this.http.post<any>("http://localhost:8080/api/auth/login", body)
       .pipe(
-        tap((resultData: any) => {
-          const response = JSON.parse(resultData);
-          console.log(response);
+        tap((response: any) => {
           if (response.success) {
             alert("Login successful!");
-            this.router.navigateByUrl('/sub-ticket');
+            // this.router.navigateByUrl('/sub-ticket');
 
-            // const domain = this.email.substring(this.email.lastIndexOf('@') + 1);
-            // if (domain === 'ms.pict.edu')
-            // {
-            //   this.router.navigateByUrl('/dashboard');
-            //
-            // }
-            // else if (domain === 'gmail.com')
-            // {
-            //   this.router.navigateByUrl('/sub-ticket');
-            //
-            // }
-            // else
-            // {
-            //   console.log('Email domain is not supported');
-            // }
+            //const domain = this.emailID.substring(this.emailID.lastIndexOf('@') + 1);
+            if (domain === 'pict.edu')
+            {
+              this.router.navigateByUrl('/dashboard');
 
-            //this.router.navigateByUrl('/dashboard');
-            this.name = '';
-            this.email = '';
-            this.password = '';
+            }
+            else if (domain === 'gmail.com')
+            {
+              this.router.navigateByUrl('/sub-ticket');
+
+            }
+            else
+            {
+              console.log('Email domain is not supported');
+            }
+            this.emailID = ''; // Clear emailID after successful login
+            this.password = ''; // Clear password after successful login
           } else {
             throw new Error("Login failed. Please check your credentials and try again.");
           }
@@ -74,7 +61,4 @@ export class LoginComponent {
       )
       .subscribe();
   }
-
 }
-
-

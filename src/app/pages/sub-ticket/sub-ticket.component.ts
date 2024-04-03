@@ -1,10 +1,24 @@
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
+import { HttpClient } from '@angular/common/http';
 
 @Component({
   selector: 'app-sub-ticket',
   templateUrl: './sub-ticket.component.html',
-  styleUrl: './sub-ticket.component.css'
+  styleUrls: ['./sub-ticket.component.css']
 })
-export class SubTicketComponent {
+export class SubTicketComponent implements OnInit {
+  studentDetails: any;
 
+  constructor(private http: HttpClient) { }
+
+  ngOnInit(): void {
+    this.fetchStudentDetails();
+  }
+
+  fetchStudentDetails() {
+    // Replace 'YOUR_API_ENDPOINT_HERE' with your actual API endpoint
+    this.http.get<any>('http://localhost:8080/api/getStudent/33201').subscribe(response => {
+      this.studentDetails = response.data;
+    });
+  }
 }

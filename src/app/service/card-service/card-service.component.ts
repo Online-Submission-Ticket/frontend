@@ -13,7 +13,7 @@ import {error} from "@angular/compiler-cli/src/transformers/util";
 })
 export class CardServiceComponent {
 
-   apiUrl = 'http://localhost:8080/api/getTeacher/tanksalenishant5@gmail.com';
+   apiUrl = 'http://localhost:8080/api/getTeacher/tanksalenishant5@pict.edu';
   constructor(private http: HttpClient) { }
 
 
