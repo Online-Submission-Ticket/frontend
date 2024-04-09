@@ -9,45 +9,15 @@
 <body>
 
 
-<!--<div class="card" routerLink="/batchdetails">-->
 
-<!--  <h3  style="color: white;">N10</h3>-->
-<!--  <p  style="color: white;">TE-10 WAD</p>-->
-<!--</div>-->
-
-
-<!--<div class="card" routerLink = "/batchdetails">-->
-
-<!--  <h3  style="color: white;">L11</h3>-->
-<!--  <p  style="color: white;">SE11- OSL</p>-->
-<!--</div>-->
-
-
-<!--<div class="card">-->
-
-<!--  <h3  style="color: white;">M9</h3>-->
-<!--  <p  style="color: white;">SE9 - OSL</p>-->
-<!--</div>-->
-
-
-<!--<div class="card">-->
-
-<!--  <h3  style="color: white;">L10</h3>-->
-<!--  <p  style="color: white;">TE10- WAD</p>-->
-<!--</div>-->
-
-<!-- Check if cardDetails is defined before accessing subjects -->
-<!--<div class="card" *ngIf="cardDetails && cardDetails.labs && cardDetails.labs.length > 0">-->
-<!--  <h3 style="color: white;">{{ cardDetails.labs[0].batch }}</h3>-->
-<!--  <p style="color: white;">{{ cardDetails.labs[0].class }} - {{ cardDetails.labs[0].subject }}</p>-->
-<!--</div>-->
-<div class="card" *ngFor="let lab of cardDetails?.labs">
+<div class="card" *ngFor="let lab of cardDetails?.labs" [routerLink]="['/batchdetails', lab.batch]" >
   <h3 style="color: white;">LAB : {{ lab.batch }}</h3>
 
-  <p style="color: white;">{{ lab.class }} - {{ lab.subject }}</p>
+  <p style="color: white;">{{ lab
+    .class }} - {{ lab.subject }}</p>
 </div>
 <!-- Use safe navigation operator to handle potential null or undefined values -->
-<div class="card" *ngFor="let subject of cardDetails?.subjects">
+<div class="card" *ngFor="let subject of cardDetails?.subjects" [routerLink]="['/classdetails', subject.class]">
   <h3 style="color: white;">{{ subject.class }}</h3>
   <p style="color: white;">{{ subject.class }} - {{ subject.subject }}</p>
   <!-- Check if subject.batch is defined before accessing it -->

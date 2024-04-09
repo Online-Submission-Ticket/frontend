@@ -11,6 +11,8 @@ import {  HttpClientModule } from '@angular/common/http';
 import { SubTicketComponent } from './pages/sub-ticket/sub-ticket.component';
 import { BatchDetailsComponent } from './pages/batch-details/batch-details.component';
 import { CardServiceComponent } from './service/card-service/card-service.component';
+import { EmailServiceComponent } from './service/email-service/email-service.component';
+import { ClassDetailsComponent } from './pages/class-details/class-details.component';
 @NgModule({
   declarations: [
     AppComponent,
@@ -20,7 +22,9 @@ import { CardServiceComponent } from './service/card-service/card-service.compon
     SubTicketComponent,
     BatchDetailsComponent,
 
-    CardServiceComponent
+    CardServiceComponent,
+      EmailServiceComponent,
+      ClassDetailsComponent
   ],
   imports: [
     BrowserModule,

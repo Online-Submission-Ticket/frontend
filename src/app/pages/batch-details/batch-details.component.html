@@ -1,1 +1,79 @@
-<p>batch-details works!</p>
+
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <!-- Required meta tags -->
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Batch Details</title>
+</head>
+<body>
+
+<!--&lt;!&ndash; Display subject details table if subjectDetails has records &ndash;&gt;-->
+<!--<section class="product-area mt-4" *ngIf="subjectDetails && subjectDetails.formattedStudents && subjectDetails.formattedStudents.length > 0">-->
+<!--  <h2>Subject Details</h2>-->
+<!--  <table class="table table-hover">-->
+<!--    <thead>-->
+<!--    <tr>-->
+<!--      <th>Roll No</th>-->
+<!--      <th>Name</th>-->
+<!--      <th>Attendance (%)</th>-->
+<!--      <th>Email ID</th>-->
+<!--      <th>Subject Name</th>-->
+<!--      <th>UT1 Marks</th>-->
+<!--      <th>UT2 Marks</th>-->
+<!--      <th>Status</th>-->
+<!--    </tr>-->
+<!--    </thead>-->
+<!--    <tbody>-->
+<!--    <tr *ngFor="let student of subjectDetails.formattedStudents">-->
+<!--      <td>{{ student.rollNo }}</td>-->
+<!--      <td>{{ student.name }}</td>-->
+<!--      <td>{{ student.attendance }}</td>-->
+<!--      <td>{{ student.emailID }}</td>-->
+<!--      <td>{{ student.subjects[0].subjectName }}</td>-->
+<!--      <td>{{ student.subjects[0].UT1Marks }}</td>-->
+<!--      <td>{{ student.subjects[0].UT2Marks }}</td>-->
+<!--      <td>{{ student.subjects[0].status ? 'Approved' : 'Not Approved' }}</td>-->
+<!--    </tr>-->
+<!--    </tbody>-->
+<!--  </table>-->
+<!--</section>-->
+
+<!-- Display batch details table if batchDetails has records -->
+<section class="product-area mt-4" *ngIf="batchDetails && batchDetails.formattedStudents && batchDetails.formattedStudents.length > 0">
+  <h2>Lab Details</h2>
+  <table class="table table-hover">
+    <thead>
+    <tr>
+      <th>Roll No</th>
+      <th>Name</th>
+      <th>Attendance (%)</th>
+      <th>Email ID</th>
+      <th>Lab Name</th>
+      <th>Lab Attendance (%)</th>
+      <th>Lab Status</th>
+    </tr>
+    </thead>
+    <tbody>
+    <tr *ngFor="let student of batchDetails.formattedStudents">
+      <td>{{ student.rollNo }}</td>
+      <td>{{ student.name }}</td>
+      <td>{{ student.attendance }}</td>
+      <td>{{ student.emailID }}</td>
+      <td>{{ student.labs[0].labName }}</td>
+      <td>{{ student.labs[0].labAttendance }}</td>
+      <td>{{ student.labs[0].labStatus ? 'Approved' : 'Not Approved' }}</td>
+    </tr>
+    </tbody>
+  </table>
+</section>
+
+<!-- Display error message if no subject or batch details -->
+<div class="error-message" *ngIf=" (!batchDetails || !batchDetails.formattedStudents || batchDetails.formattedStudents.length === 0)">
+  <p>No subject or batch details found.</p>
+</div>
+
+</body>
+</html>

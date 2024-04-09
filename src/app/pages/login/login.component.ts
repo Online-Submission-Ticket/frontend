@@ -3,7 +3,12 @@ import { Router } from '@angular/router';
 import { HttpClient } from '@angular/common/http';
 import { catchError, tap } from 'rxjs/operators';
 import { throwError } from 'rxjs';
+import { Injectable } from '@angular/core';
+import {EmailServiceComponent} from "../../service/email-service/email-service.component";
 
+@Injectable({
+  providedIn: 'root'
+})
 @Component({
   selector: 'app-login',
   templateUrl: './login.component.html',
@@ -14,13 +19,20 @@ export class LoginComponent {
   emailID: string = "";
   password: string = "";
 
-  constructor(private http: HttpClient, private router: Router) {}
+  constructor(private http: HttpClient,
+              private router: Router,
+              private emailService: EmailServiceComponent
+
+              ) {}
+
 
   onLogin() {
     let body = {
       "emailID": this.emailID,
-      "password": this.password
+      "password": this.password,
+
     };
+
     const domain = this.emailID.substring(this.emailID.lastIndexOf('@') + 1);
     this.http.post<any>("http://localhost:8080/api/auth/login", body)
       .pipe(
@@ -28,7 +40,7 @@ export class LoginComponent {
           if (response.success) {
             alert("Login successful!");
             // this.router.navigateByUrl('/sub-ticket');
-
+            this.emailService.setEmailID(this.emailID);
             //const domain = this.emailID.substring(this.emailID.lastIndexOf('@') + 1);
             if (domain === 'pict.edu')
             {
@@ -45,7 +57,8 @@ export class LoginComponent {
               console.log('Email domain is not supported');
             }
             this.emailID = ''; // Clear emailID after successful login
-            this.password = ''; // Clear password after successful login
+            this.password = '';
+
           } else {
             throw new Error("Login failed. Please check your credentials and try again.");
           }
@@ -61,4 +74,5 @@ export class LoginComponent {
       )
       .subscribe();
   }
+
 }

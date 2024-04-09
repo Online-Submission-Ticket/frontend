@@ -5,6 +5,7 @@ import { LayoutComponent } from './pages/layout/layout.component';
 import { DashboardComponent } from './pages/dashboard/dashboard.component';
 import {SubTicketComponent} from "./pages/sub-ticket/sub-ticket.component";
 import {BatchDetailsComponent} from "./pages/batch-details/batch-details.component";
+import {ClassDetailsComponent} from "./pages/class-details/class-details.component";
 
 const routes: Routes = [
   {
@@ -31,7 +32,8 @@ const routes: Routes = [
       }
     ]
   },
-  { path: 'batchdetails', component: BatchDetailsComponent },
+  { path: 'batchdetails/:batch', component: BatchDetailsComponent },
+  {path : 'classdetails/:class', component: ClassDetailsComponent}
 ];
 
 @NgModule({
