@@ -13,6 +13,9 @@ import { BatchDetailsComponent } from './pages/batch-details/batch-details.compo
 import { CardServiceComponent } from './service/card-service/card-service.component';
 import { EmailServiceComponent } from './service/email-service/email-service.component';
 import { ClassDetailsComponent } from './pages/class-details/class-details.component';
+import { FileUploadComponent } from './pages/file-upload/file-upload.component';
+import { provideAnimationsAsync } from '@angular/platform-browser/animations/async';
+
 @NgModule({
   declarations: [
     AppComponent,
@@ -24,7 +27,8 @@ import { ClassDetailsComponent } from './pages/class-details/class-details.compo
 
     CardServiceComponent,
       EmailServiceComponent,
-      ClassDetailsComponent
+      ClassDetailsComponent,
+    FileUploadComponent
   ],
   imports: [
     BrowserModule,
@@ -32,7 +36,9 @@ import { ClassDetailsComponent } from './pages/class-details/class-details.compo
     FormsModule,
     HttpClientModule
   ],
-  providers: [],
+  providers: [
+    provideAnimationsAsync()
+  ],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

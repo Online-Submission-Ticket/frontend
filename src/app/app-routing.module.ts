@@ -6,6 +6,7 @@ import { DashboardComponent } from './pages/dashboard/dashboard.component';
 import {SubTicketComponent} from "./pages/sub-ticket/sub-ticket.component";
 import {BatchDetailsComponent} from "./pages/batch-details/batch-details.component";
 import {ClassDetailsComponent} from "./pages/class-details/class-details.component";
+import { FileUploadComponent } from './pages/file-upload/file-upload.component';
 
 const routes: Routes = [
   {
@@ -20,6 +21,10 @@ const routes: Routes = [
   {
     path:'sub-ticket',
     component: SubTicketComponent
+  },
+  {
+    path:'upload-file',
+    component: FileUploadComponent,
   },
   {
     path:'',
