@@ -58,7 +58,7 @@ export class FileUploadComponent {
     this.snackBar.open(message, 'Close', {
       duration: 3000,
       horizontalPosition: 'end',
-      verticalPosition: 'bottom'
+      verticalPosition: 'top'
     });
   }
 }
