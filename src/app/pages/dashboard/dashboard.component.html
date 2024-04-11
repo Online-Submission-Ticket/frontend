@@ -26,5 +26,10 @@
 
 
 
+<div class="card" *ngIf="cardDetails?.CC" [routerLink]="['/cc-class']">
+  <h3 style="color: white;">Class Co-ordinatior : </h3>
+  <p style="color: white;">{{ cardDetails.CC }}</p>
+</div>
+
 </body>
 </html>
