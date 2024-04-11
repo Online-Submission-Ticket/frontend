@@ -15,9 +15,7 @@ import {EmailServiceComponent} from "../email-service/email-service.component";
 })
 export class CardServiceComponent {
   teacherID: string = '';
-  // apiUrl = 'http://localhost:8080/api/getTeacher/tanksalenishant5@pict.edu';
 
-   // apiUrl: string = '';
   constructor(private http: HttpClient,
               private emailService: EmailServiceComponent
               ) { }
@@ -28,14 +26,11 @@ apiUrl = `http://localhost:8080/api/getTeacher/${this.emailID}`;
   // ngOnInit() {
   //   //const emailID = this.emailService.getEmailID();
   //
-  //   this.apiUrl = `http://localhost:8080/api/getTeacher/${emailID}`;
-  //   // Now use this.apiUrl to make API calls
+  //  this.apiUrl = `http://localhost:8080/api/getTeacher/${this.emailID}`;
+  //
   // }
   getCardDetails(): Observable<any> {
-    // return this.http.get(this.apiUrl)
-    //   .pipe(
-    //     catchError(error => this.handleError(error))
-    //   );
+
     return this.http.get(this.apiUrl).pipe(
       tap((response: any) => {
         if (response.success) {
@@ -70,5 +65,15 @@ apiUrl = `http://localhost:8080/api/getTeacher/${this.emailID}`;
     return throwError('Error fetching card details'); // Throw error to be caught by caller
   }
 
+  getSubjectsDetailsForCC(teacherId: string): Observable<any> {
+    const url = `http://localhost:8080/api/connectStuToCC/ABC12/cc`;
+    return this.http.get<any>(url)
+      .pipe(
+        catchError(error => {
+          console.error('Error fetching CC subject details:', error);
+          return throwError(error);
+        })
+      );
+  }
 
 }

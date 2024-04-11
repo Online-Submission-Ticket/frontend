@@ -13,6 +13,7 @@ import { BatchDetailsComponent } from './pages/batch-details/batch-details.compo
 import { CardServiceComponent } from './service/card-service/card-service.component';
 import { EmailServiceComponent } from './service/email-service/email-service.component';
 import { ClassDetailsComponent } from './pages/class-details/class-details.component';
+import { CcClassComponent } from './pages/cc-class/cc-class.component';
 @NgModule({
   declarations: [
     AppComponent,
@@ -24,7 +25,8 @@ import { ClassDetailsComponent } from './pages/class-details/class-details.compo
 
     CardServiceComponent,
       EmailServiceComponent,
-      ClassDetailsComponent
+      ClassDetailsComponent,
+      CcClassComponent
   ],
   imports: [
     BrowserModule,

@@ -1,0 +1,49 @@
+<!-- Display any error message if there's an error -->
+<div *ngIf="errorMessage" class="error-message">
+  {{ errorMessage }}
+</div>
+
+<!-- Display CC class details table if students are found -->
+<section class="student-area mt-4" *ngIf="ccStudents && ccStudents.length > 0">
+  <h2>CC Class Details</h2>
+  <table class="table table-hover">
+    <thead>
+    <tr>
+      <th>Roll No</th>
+      <th>Name</th>
+      <th>Email ID</th>
+      <th>Attendance (%)</th>
+      <th>Subjects</th>
+      <th>Labs</th>
+      <th>Status </th>
+    </tr>
+    </thead>
+    <tbody>
+    <tr *ngFor="let student of ccStudents">
+      <td>{{ student.rollNo }}</td>
+      <td>{{ student.name }}</td>
+      <td>{{ student.emailID }}</td>
+      <td>{{ student.attendance }}</td>
+      <td>
+        <ul>
+          <li *ngFor="let subject of student.subjects">
+            <strong>{{ subject.subjectName }}</strong>: UT1 Marks - {{ subject.UT1Marks }}, UT2 Marks - {{ subject.UT2Marks }}, Attendance - {{ subject.attendance }}%, Status - {{ subject.status ? 'Yes' : 'No'}}
+          </li>
+        </ul>
+      </td>
+      <td>
+        <ul>
+          <li *ngFor="let lab of student.labs">
+            <strong>{{ lab.labName }}</strong>: Attendance - {{ lab.labAttendance }}%, Status - {{ lab.labStatus ? 'Yes' : 'No' }}
+          </li>
+        </ul>
+      </td>
+      <td>
+
+        {{ student.submissionStatus ? 'Yes' : 'No'}}
+
+      </td>
+    </tr>
+    </tbody>
+  </table>
+</section>
