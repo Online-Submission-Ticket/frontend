@@ -17,7 +17,7 @@ export class SubTicketComponent implements OnInit {
 
   fetchStudentDetails() {
     // Replace 'YOUR_API_ENDPOINT_HERE' with your actual API endpoint
-    this.http.get<any>('http://localhost:8080/api/getStudent/33201').subscribe(response => {
+    this.http.get<any>('http://localhost:8080/api/getStudent/33201@gmail.com').subscribe(response => {
       this.studentDetails = response.data;
     });
   }
