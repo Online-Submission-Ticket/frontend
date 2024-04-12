@@ -33,7 +33,7 @@ export class BatchDetailsComponent implements OnInit {
         this.subjects = response.subjects;
         console.log('Teacher ID:', this.teacherID);
         console.log('Labs:', this.labs);
-        console.log('Subjects:', this.subjects);
+       // console.log('Subjects:', this.subjects);
       } else {
         this.errorMessage = response.message;
       }
@@ -68,21 +68,19 @@ export class BatchDetailsComponent implements OnInit {
     });
   }
 
-  // getSubjectDetails(classId: string): void {
-  //   this.cardService.getSubjectsDetails(this.teacherID, classId).pipe(
-  //     catchError(error => {
-  //       console.error('Error fetching subject details:', error);
-  //       this.errorMessage = 'An error occurred while fetching subject details.';
-  //       return throwError(error);
-  //     })
-  //   ).subscribe(response => {
-  //     if (response.success) {
-  //       this.subjectDetails = response.data;
-  //       console.log('Subject details:', this.subjectDetails);
-  //     } else {
-  //       this.errorMessage = response.message;
-  //     }
-  //   });
-  // }
+
+  // Method to toggle lab status
+  toggleLabStatus(teacherID: string, rollNo: string, labName: string, lab: any): void {
+    this.cardService.updateLabStatus(teacherID, rollNo, labName, !lab.labStatus).subscribe(response => {
+      if (response.success) {
+        // Update lab status locally
+        lab.labStatus = !lab.labStatus;
+        console.log('Lab status updated successfully');
+      } else {
+        console.error('Error updating lab status:', response.message);
+      }
+    });
+  }
+
 
 }

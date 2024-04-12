@@ -46,4 +46,21 @@ export class ClassDetailsComponent implements OnInit {
     });
   }
 
+
+  toggleTheoryStatus(student: any): void {
+    const newStatus = !student.subjects[0].status; // Toggle the status
+    this.cardService.updateTheorySubmissionStatus(student.rollNo, newStatus).subscribe(response => {
+      if (response.success) {
+        // Update the status in the subjects array
+        student.subjects.forEach((subject: { subjectName: any; status: any; }) => {
+          if (subject.subjectName === response.data.student.subjects[0].subjectName) {
+            subject.status = response.data.student.subjects[0].status;
+          }
+        });
+        console.log('Status updated successfully:', newStatus);
+      } else {
+        console.error('Error updating status:', response.message);
+      }
+    });
+  }
 }

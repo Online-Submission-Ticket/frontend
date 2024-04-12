@@ -40,7 +40,8 @@
       </td>
       <td>
 
-        {{ student.submissionStatus ? 'Yes' : 'No'}}
+<!--        {{ student.submissionStatus ? 'Yes' : 'No'}}-->
+        <button (click)="toggleSubmission(student)" class="toggle-button">{{ student.submissionStatus ? 'yes' : 'no' }}</button>
 
       </td>
     </tr>
