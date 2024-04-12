@@ -44,7 +44,7 @@
       <td>{{ student.subjects[0].subjectName }}</td>
       <td>{{ student.subjects[0].UT1Marks }}</td>
       <td>{{ student.subjects[0].UT2Marks }}</td>
-      <td>{{ student.subjects[0].status ? 'Approved' : 'Not Approved' }}</td>
+      <td><button (click)="toggleTheoryStatus(student)">{{ student.subjects[0].status ? 'Approved' : 'Not Approved' }}</button></td>
     </tr>
     </tbody>
   </table>

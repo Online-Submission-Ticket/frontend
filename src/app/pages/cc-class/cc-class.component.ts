@@ -46,4 +46,26 @@ export class CcClassComponent implements OnInit {
       }
     });
   }
+  toggleSubmission(student: any): void {
+    // Toggle the submission status
+    student.submissionStatus = !student.submissionStatus;
+
+    // Call the API to update the submission status
+    this.cardService.updateSubmissionStatus(student.rollNo, student.submissionStatus).subscribe(
+      response => {
+        if (!response.success) {
+          // Revert the submission status if API call fails
+          student.submissionStatus = !student.submissionStatus;
+          console.error('Error updating submission status:', response.message);
+          // Optionally, show an error message to the user
+        }
+      },
+      error => {
+        // Revert the submission status if API call fails
+        student.submissionStatus = !student.submissionStatus;
+        console.error('Error updating submission status:', error);
+        // Optionally, show an error message to the user
+      }
+    );
+  }
 }

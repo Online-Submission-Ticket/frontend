@@ -75,5 +75,39 @@ apiUrl = `http://localhost:8080/api/getTeacher/${this.emailID}`;
         })
       );
   }
+  updateSubmissionStatus(rollNo: string, submissionStatus: boolean): Observable<any> {
+    const apiUrl = `http://localhost:8080/api/approve/cc/ABC12/${rollNo}`;
+    console.log('rollno:', rollNo);
+    return this.http.post(apiUrl, { submissionStatus }).pipe(
+      catchError(error => {
+        console.error('Error updating submission status:', error);
+        return throwError(error);
+      })
+    );
+  }
+
+  updateLabStatus(teacherID: string, rollNo: string, labName: string, submissionStatus: boolean): Observable<any> {
+    const url = `http://localhost:8080/api/approve/lab/ABC12/CCL/${rollNo}/N`;
+    return this.http.post<any>(url, { submissionStatus }).pipe(
+      catchError(error => {
+        console.error('Error updating lab status:', error);
+        return throwError(error);
+      })
+    );
+  }
+
+
+
+  updateTheorySubmissionStatus(rollNo: string, submissionStatus: boolean): Observable<any> {
+    const apiUrl = `http://localhost:8080/api/approve/theory/ABC12/CC/${rollNo}`;
+    console.log('rollno:', rollNo);
+    return this.http.post(apiUrl, { submissionStatus }).pipe(
+      catchError(error => {
+        console.error('Error updating theory submission status:', error);
+        return throwError(error);
+      })
+    );
+  }
+
 
 }
