@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import {Component, EventEmitter} from '@angular/core';
 import { Injectable } from '@angular/core';
 
 @Injectable({
@@ -11,10 +11,11 @@ import { Injectable } from '@angular/core';
 })
 
 export class EmailServiceComponent {
-  private emailID: string = '';
-
+  emailID: string = '';
+  emailIDChanged: EventEmitter<string> = new EventEmitter<string>();
   setEmailID(emailID: string) {
     this.emailID = emailID;
+    this.emailIDChanged.emit(emailID);
   }
 
   getEmailID(): string {

@@ -15,36 +15,36 @@ import {EmailServiceComponent} from "../../service/email-service/email-service.c
   styleUrls: ['./login.component.css']
 })
 export class LoginComponent {
-  isSignDivVisiable: boolean  = true;
-  emailID: string = "";
-  password: string = "";
-  newPassword : string = "";
+
 
   constructor(private http: HttpClient,
               private router: Router,
-              private emailService: EmailServiceComponent
+              protected emailService: EmailServiceComponent
 
               ) {}
 
-
+  isSignDivVisiable: boolean  = true;
+  // emailID: string = "";
+  password: string = "";
+  newPassword : string = "";
   onLogin() {
     let body = {
-      "emailID": this.emailID,
+      "emailID": this.emailService.emailID,
       "password": this.password,
 
     };
-     if (this.emailID==='admin@gmail.com')
+     if (this.emailService.emailID==='admin@gmail.com')
       {
         this.router.navigateByUrl('/file-upload');
       }
-    const domain = this.emailID.substring(this.emailID.lastIndexOf('@') + 1);
+    const domain = this.emailService.emailID.substring(this.emailService.emailID.lastIndexOf('@') + 1);
     this.http.post<any>("http://localhost:8080/api/auth/login", body)
       .pipe(
         tap((response: any) => {
           if (response.success) {
             alert("Login successful!");
             // this.router.navigateByUrl('/sub-ticket');
-            this.emailService.setEmailID(this.emailID);
+            this.emailService.setEmailID(this.emailService.emailID);
             //const domain = this.emailID.substring(this.emailID.lastIndexOf('@') + 1);
             if (domain === 'pict.edu')
             {
@@ -60,7 +60,7 @@ export class LoginComponent {
             {
               console.log('Email domain is not supported');
             }
-            this.emailID = ''; // Clear emailID after successful login
+            this.emailService.emailID = ''; // Clear emailID after successful login
             this.password = '';
 
           } else {
@@ -83,7 +83,7 @@ export class LoginComponent {
     this.isSignDivVisiable = false;
     // Prepare the request body
     const body = {
-      emailID: this.emailID,
+      emailID: this.emailService.emailID,
       newPassword: this.newPassword
     };
 

@@ -12,7 +12,7 @@
         </div>
         <span>or use your email for registeration</span>
 
-                        <input type="email" name="email" [(ngModel)]="emailID" placeholder="Email">
+                        <input type="email" name="email" [(ngModel)]="emailService.emailID" placeholder="Email">
                         <input type="password" name="password"  [(ngModel)]="newPassword" placeholder="Password">
                         <button (click)="resetPassword()">Reset password</button>
       </form>
@@ -27,7 +27,7 @@
           <a href="#" class="icon"><i class="fa-brands fa-linkedin-in"></i></a>
         </div>
         <span>or use your email password</span>
-        <input type="email" name="email" [(ngModel)]="emailID" placeholder="Email">
+        <input type="email" name="email" [(ngModel)]="emailService.emailID" placeholder="Email">
         <input type="password" name="password"   [(ngModel)]="password" placeholder="Password">
         <a href="#">→ Forgot Your Password? ←</a>
         <button (click)="onLogin()">Sign In</button>
