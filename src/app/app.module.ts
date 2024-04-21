@@ -14,6 +14,7 @@ import { CardServiceComponent } from './service/card-service/card-service.compon
 import { EmailServiceComponent } from './service/email-service/email-service.component';
 import { ClassDetailsComponent } from './pages/class-details/class-details.component';
 import { CcClassComponent } from './pages/cc-class/cc-class.component';
+import { FileUploadComponent } from './pages/file-upload/file-upload.component';
 @NgModule({
   declarations: [
     AppComponent,
@@ -26,7 +27,8 @@ import { CcClassComponent } from './pages/cc-class/cc-class.component';
     CardServiceComponent,
       EmailServiceComponent,
       ClassDetailsComponent,
-      CcClassComponent
+      CcClassComponent,
+      FileUploadComponent
   ],
   imports: [
     BrowserModule,

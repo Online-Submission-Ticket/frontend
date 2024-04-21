@@ -1,0 +1,18 @@
+<div class="container">
+  <div class="row mt-5">
+    <div class="col-md-4">
+      <div class="mb-3">
+        <label for="formFile" class="form-label">Upload Data (CSV)</label>
+        <input (change)="onFilechange($event)" class="form-control" type="file" id="formFile">
+      </div>
+      <div class="mb-3">
+        <label for="uploadOption" class="form-label">Select upload option</label>
+        <select [(ngModel)]="selectedOption" class="form-select" id="uploadOption">
+          <option value="students">Students</option>
+          <option value="teachers">Teachers</option>
+        </select>
+      </div>
+      <button (click)="uploadFile()" type="button" class="btn btn-primary">Upload</button>
+    </div>
+  </div>
+</div>

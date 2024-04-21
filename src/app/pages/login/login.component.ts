@@ -18,6 +18,7 @@ export class LoginComponent {
   isSignDivVisiable: boolean  = true;
   emailID: string = "";
   password: string = "";
+  newPassword : string = "";
 
   constructor(private http: HttpClient,
               private router: Router,
@@ -32,7 +33,10 @@ export class LoginComponent {
       "password": this.password,
 
     };
-
+     if (this.emailID==='admin@gmail.com')
+      {
+        this.router.navigateByUrl('/file-upload');
+      }
     const domain = this.emailID.substring(this.emailID.lastIndexOf('@') + 1);
     this.http.post<any>("http://localhost:8080/api/auth/login", body)
       .pipe(
@@ -73,6 +77,30 @@ export class LoginComponent {
         })
       )
       .subscribe();
+  }
+  resetPassword()
+  {
+    this.isSignDivVisiable = false;
+    // Prepare the request body
+    const body = {
+      emailID: this.emailID,
+      newPassword: this.newPassword
+    };
+
+    // Make the HTTP POST request to the API endpoint
+    this.http.post<any>('http://localhost:8080/api/auth/set/password', body)
+      .subscribe(
+        response => {
+          // Handle success response
+          console.log('Password reset successfully:', response);
+          // Optionally, navigate to a success page or display a success message
+        },
+        error => {
+          // Handle error response
+          console.error('Error resetting password:', error);
+          // Optionally, display an error message to the user
+        }
+      );
   }
 
 }

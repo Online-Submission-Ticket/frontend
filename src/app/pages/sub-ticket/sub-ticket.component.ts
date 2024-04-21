@@ -8,7 +8,7 @@ import { HttpClient } from '@angular/common/http';
 })
 export class SubTicketComponent implements OnInit {
   studentDetails: any;
-
+  rollNo: any;
   constructor(private http: HttpClient) { }
 
   ngOnInit(): void {
@@ -19,6 +19,7 @@ export class SubTicketComponent implements OnInit {
 
     this.http.get<any>('http://localhost:8080/api/getStudent/33201@gmail.com').subscribe(response => {
       this.studentDetails = response.data;
+
     });
   }
 }
