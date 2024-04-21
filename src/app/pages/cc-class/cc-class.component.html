@@ -1,3 +1,56 @@
+<!--&lt;!&ndash; Display any error message if there's an error &ndash;&gt;-->
+<!--<div *ngIf="errorMessage" class="error-message">-->
+<!--  {{ errorMessage }}-->
+<!--</div>-->
+
+<!--&lt;!&ndash; Display CC class details table if students are found &ndash;&gt;-->
+<!--<section class="student-area mt-4" *ngIf="ccStudents && ccStudents.length > 0">-->
+<!--  <h2>CC Class Details</h2>-->
+<!--  <table class="table table-hover">-->
+<!--    <thead>-->
+<!--    <tr>-->
+<!--      <th>Roll No</th>-->
+<!--      <th>Name</th>-->
+<!--      <th>Email ID</th>-->
+<!--      <th>Attendance (%)</th>-->
+<!--      <th>Subjects</th>-->
+<!--      <th>Labs</th>-->
+<!--      <th>Status </th>-->
+<!--    </tr>-->
+<!--    </thead>-->
+<!--    <tbody>-->
+<!--    <tr *ngFor="let student of ccStudents">-->
+<!--      <td>{{ student.rollNo }}</td>-->
+<!--      <td>{{ student.name }}</td>-->
+<!--      <td>{{ student.emailID }}</td>-->
+<!--      <td>{{ student.attendance }}</td>-->
+<!--      <td>-->
+<!--        <ul>-->
+<!--          <li *ngFor="let subject of student.subjects">-->
+<!--            <strong>{{ subject.subjectName }}</strong>: UT1 Marks - {{ subject.UT1Marks }}, UT2 Marks - {{ subject.UT2Marks }}, Attendance - {{ subject.attendance }}%, Status - {{ subject.status ? 'Yes' : 'No'}}-->
+<!--          </li>-->
+<!--        </ul>-->
+<!--      </td>-->
+<!--      <td>-->
+<!--        <ul>-->
+<!--          <li *ngFor="let lab of student.labs">-->
+<!--            <strong>{{ lab.labName }}</strong>: Attendance - {{ lab.labAttendance }}%, Status - {{ lab.labStatus ? 'Yes' : 'No' }}-->
+<!--          </li>-->
+<!--        </ul>-->
+<!--      </td>-->
+<!--      <td>-->
+
+<!--&lt;!&ndash;        {{ student.submissionStatus ? 'Yes' : 'No'}}&ndash;&gt;-->
+<!--        <button (click)="toggleSubmission(student)" class="toggle-button">{{ student.submissionStatus ? 'yes' : 'no' }}</button>-->
+
+<!--      </td>-->
+<!--    </tr>-->
+<!--    </tbody>-->
+<!--  </table>-->
+<!--</section>-->
+<!-- Display any error message if there's an error -->
+
+
 <!-- Display any error message if there's an error -->
 <div *ngIf="errorMessage" class="error-message">
   {{ errorMessage }}
@@ -15,7 +68,7 @@
       <th>Attendance (%)</th>
       <th>Subjects</th>
       <th>Labs</th>
-      <th>Status </th>
+      <th>Status</th>
     </tr>
     </thead>
     <tbody>
@@ -25,24 +78,49 @@
       <td>{{ student.emailID }}</td>
       <td>{{ student.attendance }}</td>
       <td>
-        <ul>
-          <li *ngFor="let subject of student.subjects">
-            <strong>{{ subject.subjectName }}</strong>: UT1 Marks - {{ subject.UT1Marks }}, UT2 Marks - {{ subject.UT2Marks }}, Attendance - {{ subject.attendance }}%, Status - {{ subject.status ? 'Yes' : 'No'}}
-          </li>
-        </ul>
+        <!-- Sub-table for subjects -->
+        <table class="sub-table">
+          <thead>
+          <tr>
+            <th>Subject Name</th>
+            <th>UT1 Marks</th>
+            <th>UT2 Marks</th>
+            <th>Attendance (%)</th>
+            <th>Status</th>
+          </tr>
+          </thead>
+          <tbody>
+          <tr *ngFor="let subject of student.subjects">
+            <td>{{ subject.subjectName }}</td>
+            <td>{{ subject.UT1Marks }}</td>
+            <td>{{ subject.UT2Marks }}</td>
+            <td>{{ subject.attendance }}</td>
+            <td>{{ subject.status ? 'Yes' : 'No' }}</td>
+          </tr>
+          </tbody>
+        </table>
       </td>
       <td>
-        <ul>
-          <li *ngFor="let lab of student.labs">
-            <strong>{{ lab.labName }}</strong>: Attendance - {{ lab.labAttendance }}%, Status - {{ lab.labStatus ? 'Yes' : 'No' }}
-          </li>
-        </ul>
+        <!-- Sub-table for labs -->
+        <table class="sub-table">
+          <thead>
+          <tr>
+            <th>Lab Name</th>
+            <th>Attendance (%)</th>
+            <th>Status</th>
+          </tr>
+          </thead>
+          <tbody>
+          <tr *ngFor="let lab of student.labs">
+            <td>{{ lab.labName }}</td>
+            <td>{{ lab.labAttendance }}</td>
+            <td>{{ lab.labStatus ? 'Yes' : 'No' }}</td>
+          </tr>
+          </tbody>
+        </table>
       </td>
       <td>
-
-<!--        {{ student.submissionStatus ? 'Yes' : 'No'}}-->
-        <button (click)="toggleSubmission(student)" class="toggle-button">{{ student.submissionStatus ? 'yes' : 'no' }}</button>
-
+        <button (click)="toggleSubmission(student)" class="toggle-button">{{ student.submissionStatus ? 'Yes' : 'No' }}</button>
       </td>
     </tr>
     </tbody>

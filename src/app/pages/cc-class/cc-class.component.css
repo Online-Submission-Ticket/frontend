@@ -1,0 +1,24 @@
+.sub-table th,
+.sub-table td {
+  border: 1px solid #dddddd;
+  padding: 8px;
+}
+
+.sub-table th {
+  background-color: #f2f2f2;
+  text-align: left;
+}
+
+.sub-table {
+  border-collapse: collapse;
+}
+
+.sub-table th:first-child,
+.sub-table td:first-child {
+  border-left: none;
+}
+
+.sub-table th:last-child,
+.sub-table td:last-child {
+  border-right: none;
+}
