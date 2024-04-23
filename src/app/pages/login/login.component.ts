@@ -37,6 +37,10 @@ export class LoginComponent {
       {
         this.router.navigateByUrl('/file-upload');
       }
+    localStorage.clear();
+
+    // Store the new email ID in local storage
+    localStorage.setItem('emailID', this.emailID);
     const domain = this.emailID.substring(this.emailID.lastIndexOf('@') + 1);
     this.http.post<any>("http://localhost:8080/api/auth/login", body)
       .pipe(
@@ -45,6 +49,7 @@ export class LoginComponent {
             alert("Login successful!");
             // this.router.navigateByUrl('/sub-ticket');
             this.emailService.setEmailID(this.emailID);
+
             //const domain = this.emailID.substring(this.emailID.lastIndexOf('@') + 1);
             if (domain === 'pict.edu')
             {

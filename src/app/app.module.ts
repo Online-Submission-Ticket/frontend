@@ -15,6 +15,7 @@ import { EmailServiceComponent } from './service/email-service/email-service.com
 import { ClassDetailsComponent } from './pages/class-details/class-details.component';
 import { CcClassComponent } from './pages/cc-class/cc-class.component';
 import { FileUploadComponent } from './pages/file-upload/file-upload.component';
+import { provideAnimationsAsync } from '@angular/platform-browser/animations/async';
 @NgModule({
   declarations: [
     AppComponent,
@@ -36,7 +37,9 @@ import { FileUploadComponent } from './pages/file-upload/file-upload.component';
     FormsModule,
     HttpClientModule
   ],
-  providers: [],
+  providers: [
+    provideAnimationsAsync()
+  ],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
